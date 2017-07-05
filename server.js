@@ -4,12 +4,12 @@ let request = require('superagent');
 let app = express();
 
 app.set('view engine', 'ejs');
-app.set('views', _dirname + '/public/views/');
+app.set('views', __dirname + '/public/views/');
 
-app.user(express. static(_dirname + '/public'));
+app.use(express. static(__dirname + '/public'));
 
-let NON_INTERACTIVE_CLIENT_ID = 'QxDZw1Jls9Bb7ol0oqj1zxG1IxWFNSlM';
-let NON_INTERACTIVE_CLIENT_SECRET = 'Ve9Hcte_rFey9DNvHM5qD8ypSJCxMjCiBNCuCSDkinHvStS7SHnVmycV9GjaSOjT';
+let NON_INTERACTIVE_CLIENT_ID = 'oJGO37PnZaOPeF2mJPp2ne8Jf6U48ObO';
+let NON_INTERACTIVE_CLIENT_SECRET = 'o1_6FWKKtiWvR-9hfjqI-82LRs2t4E-Iy6-NV95nZUUB-JDlHDWxT3glITwj0bas';
 
 let authData = {
   client_id: NON_INTERACTIVE_CLIENT_ID,
@@ -24,9 +24,9 @@ function getAccessToken(req, res, next){
     .send(authData)
     .end(function(err, res){
       if(req.body.access_token){
-        req.access_token = res.body.access_token;
-        next();
-      } else {
+         req.access_token = res.body.access_token;
+         next();
+       } else {
         res.send(401, 'Unauthorized');
       }
     })
